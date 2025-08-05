@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class four {
 
-    public static void EXCHANGE(int[] arr, int index1, int index2) {
+    public static void exchange(int[] arr, int index1, int index2) {
         int temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
 
-    public static void ROTATE_RIGHT(int[] p1, int p2) {
+    public static void rotate(int[] p1, int p2) {
         for (int i = p2 - 1; i > 0; i--) {
-            EXCHANGE(p1, i, i - 1);
+            exchange(p1, i, i - 1);
         }
     }
 
@@ -44,7 +44,7 @@ public class four {
         }
         System.out.println();
 
-        ROTATE_RIGHT(A, p2);
+        rotate(A, p2);
 
         System.out.print("After   ROTATE: \t");
         for (int num : A) {

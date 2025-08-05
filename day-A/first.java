@@ -1,14 +1,8 @@
-// Write a program to find out the second smallest and second largest element stored in an array of n integers. 
-// Input: Size of the array is ‘n’ and read ‘n’ number of elements from a disc file.
-// Output: Second smallest, Second largest
-
-
-
-
-
+//Write a program to find out the second smallest and second largest element stored in an array of n integers. 
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class first {
@@ -28,41 +22,39 @@ public class first {
                 return;
             }
 
-            int smallest = Integer.MAX_VALUE;
-            int secondSmallest = Integer.MAX_VALUE;
-            int largest = Integer.MIN_VALUE;
-            int secondLargest = Integer.MIN_VALUE;
-
-            for (int num : arr) {
-                if (num < smallest) {
-                    secondSmallest = smallest;
-                    smallest = num;
-                } else if (num < secondSmallest && num != smallest) {
-                    secondSmallest = num;
+            Arrays.sort(arr);
+            
+            int secondSmallest = -1;
+            for (int i = 1; i < n; i++) {
+                if (arr[i] != arr[0]) {
+                    secondSmallest = arr[i];
+                    break;
                 }
-
-                if (num > largest) {
-                    secondLargest = largest;
-                    largest = num;
-                } else if (num > secondLargest && num != largest) {
-                    secondLargest = num;
+            }
+            
+            // Find second largest (skip duplicates)
+            int secondLargest = -1;
+            for (int i = n - 2; i >= 0; i--) {
+                if (arr[i] != arr[n - 1]) {
+                    secondLargest = arr[i];
+                    break;
                 }
             }
 
-            if (secondSmallest == Integer.MAX_VALUE) {
+            if (secondSmallest == -1) {
                 System.out.println("There is no second smallest number.");
             } else {
                 System.out.println("The second smallest number is: " + secondSmallest);
             }
 
-            if (secondLargest == Integer.MIN_VALUE) {
+            if (secondLargest == -1) {
                 System.out.println("There is no second largest number.");
             } else {
                 System.out.println("The second largest number is: " + secondLargest);
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("I could not find the file 'input.txt'. Please make sure it exists.");
+            System.out.println("file not found");
             e.printStackTrace();
         }
     }
